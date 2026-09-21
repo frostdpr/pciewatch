@@ -1,0 +1,19 @@
+[package]
+name = "pciewatch"
+version = "0.1.0"
+edition = "2021"
+description = "Tray app that watches the GPU's PCIe link and notifies on degradation"
+
+[dependencies]
+tray-icon = "0.25"
+# Same version as tray-icon's own dependency — we use its core::GUID so the
+# tray icon's guidItem bytes are guaranteed identical to ours (balloon targeting).
+windows-sys = "0.61"
+nvml-wrapper = "0.13"
+winreg = "0.56"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+
+[profile.release]
+strip = true
